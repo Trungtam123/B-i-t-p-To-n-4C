@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toán 4C - Ôn tập đổi đơn vị khối lượng</title>
+<style>
+:root{--purple:#7357c8;--pink:#e779a5;--blue:#cdeaff;--ink:#30284b;--cream:#fff9e9;--green:#20865b}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(135deg,#f4f0ff,#eaf8ff 55%,#fff0f5);min-height:100vh}
+.wrap{max-width:850px;margin:0 auto;padding:22px 14px 40px}
+.card{background:#fff;border-radius:24px;padding:22px;box-shadow:0 10px 30px #493b7314;margin-bottom:18px}
+.profile{display:flex;gap:16px;align-items:center;border:2px solid #f2eafa}
+.avatar{width:84px;height:84px;border-radius:50%;background:#e9e2ff;border:6px solid #f5c3d9;display:grid;place-items:center;color:var(--purple);font-size:28px;font-weight:800;flex:none}
+.school{font-weight:800;color:var(--purple);font-size:20px;margin-bottom:7px}.meta{line-height:1.7;font-weight:600}
+h1{text-align:center;font-size:clamp(27px,5vw,42px);margin:18px 0 5px;color:#35284f}
+.sub{text-align:center;color:#c85f91;font-weight:800;font-size:19px;margin:0 0 20px}
+.progressrow{display:flex;gap:12px;align-items:center}.track{height:13px;background:#eee8ff;border-radius:20px;overflow:hidden;flex:1}.fill{height:100%;width:0;background:linear-gradient(90deg,#8c6de0,#79c8ef);transition:width .25s}.status{background:#e8e1ff;padding:10px 17px;border-radius:30px;font-weight:800;white-space:nowrap}
+.welcome{background:linear-gradient(100deg,#e7ddff,#cceeff);padding:15px 20px;border-radius:16px;font-size:20px;font-weight:800}
+h2{color:var(--purple);font-size:clamp(22px,4vw,32px);text-align:center;margin:18px 0 8px}
+.guide{background:var(--cream);border:2px solid #f6e4a7;border-radius:20px;padding:17px 20px;line-height:1.65}
+label{display:block;font-weight:700;margin:15px 0 7px}input{width:100%;padding:14px;border:2px solid #ddd4f5;border-radius:12px;font-size:17px}
+button{border:0;border-radius:14px;padding:13px 20px;font-size:17px;font-weight:800;cursor:pointer}
+.primary{background:linear-gradient(100deg,#8063d2,#63b9e7);color:#fff;width:100%;margin-top:16px}.secondary{background:#f0ebff;color:var(--purple)}
+.question{font-size:23px;font-weight:800;line-height:1.45;margin:14px 0 18px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.answer{background:#f7f4ff;border:2px solid #e5def8;color:var(--ink);text-align:left;min-height:58px}
+.answer:hover{border-color:#9b83e3}.answer:disabled{cursor:default;opacity:1}
+.answer.correct{background:#e2f7ed;border-color:#5fbd8d;color:#14633e}.answer.wrong{background:#fff0f1;border-color:#e58a99;color:#9d3545}
+.feedback{margin-top:16px;padding:14px;border-radius:14px;font-weight:700;line-height:1.5;display:none}.good{display:block;background:#e4f8ed;color:#176442}.bad{display:block;background:#fff0f1;color:#9d3545}
+.actions{display:flex;gap:10px;margin-top:16px}.actions button{flex:1}
+.result{text-align:center}.score{font-size:48px;color:var(--purple);font-weight:900}.small{color:#706984}
+.hidden{display:none!important}
+@media(max-width:560px){.profile{align-items:flex-start}.avatar{width:65px;height:65px;font-size:22px}.school{font-size:17px}.meta{font-size:14px}.answers{grid-template-columns:1fr}.card{padding:17px}.actions{flex-direction:column}.status{font-size:13px;padding:9px 12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="card profile">
+    <div class="avatar">4C</div>
+    <div>
+      <div class="school">TRƯỜNG TIỂU HỌC TRẦN VĂN PHÁN</div>
+      <div class="meta">GIÁO VIÊN: TRƯƠNG TRUNG TÂM<br>LỚP: 4C – ĐIỂM TRƯỜNG CHÍNH<br>MÔN: TOÁN LỚP 4</div>
+    </div>
+  </section>
+  <h1>ÔN TẬP ĐỔI ĐƠN VỊ KHỐI LƯỢNG</h1>
+  <p class="sub">BỘ BÀI TẬP TƯƠNG TÁC · 10 CÂU</p>
+  <section class="card">
+    <div class="progressrow"><div class="track"><div class="fill" id="progress"></div></div><div class="status" id="status">Chưa bắt đầu</div></div>
+  </section>
+  <section class="card" id="intro">
+    <div class="welcome">Chào mừng em đến với bài tập!</div>
+    <h2>TOÁN 4 – ĐỔI ĐƠN VỊ KHỐI LƯỢNG</h2>
+    <p class="sub">10 câu hỏi trắc nghiệm</p>
+    <div class="guide">
+      <b>Hướng dẫn làm bài</b>
+      <ul>
+        <li>Em hãy nhập họ và tên trước khi bắt đầu.</li>
+        <li>Bài tập gồm 10 câu trắc nghiệm, mỗi câu có 4 lựa chọn.</li>
+        <li>Chọn một đáp án. Hệ thống sẽ báo đúng hoặc chưa đúng.</li>
+        <li>Mỗi câu được trả lời tối đa 2 lần. Sau đó hệ thống chuyển sang câu tiếp theo.</li>
+        <li>Hoàn thành bài, em xem số câu đúng và lời nhận xét.</li>
+      </ul>
+      <b>Nhắc lại:</b> 1 tấn = 10 tạ; 1 tạ = 10 yến; 1 yến = 10 kg; 1 kg = 1 000 g.
+    </div>
+    <label for="student">Họ và tên học sinh</label>
+    <input id="student" placeholder="Ví dụ: Nguyễn Văn A" autocomplete="name">
+    <button class="primary" id="start">BẮT ĐẦU LÀM BÀI</button>
+  </section>
+  <section class="card hidden" id="quiz">
+    <div class="progressrow"><b id="counter">Câu 1/10</b><span class="small" id="attempt">Lượt thử: 1/2</span></div>
+    <div class="question" id="question"></div>
+    <div class="answers" id="answers"></div>
+    <div class="feedback" id="feedback" aria-live="polite"></div>
+    <div class="actions"><button class="secondary" id="next" disabled>CÂU TIẾP THEO</button></div>
+  </section>
+  <section class="card result hidden" id="result">
+    <div class="welcome">Chúc mừng em đã hoàn thành!</div>
+    <h2>KẾT QUẢ BÀI LÀM</h2>
+    <p id="studentResult" class="small"></p>
+    <div class="score" id="score">0/10</div>
+    <p id="comment"></p>
+    <p id="detail" class="small"></p>
+    <button class="primary" id="again">LÀM LẠI BÀI</button>
+  </section>
+  <p class="small" style="text-align:center">Bài tập học tập dành cho học sinh lớp 4C · Trường Tiểu học Trần Văn Phán</p>
+</div>
+<script>
+const questions=[
+ {q:"3 kg bằng bao nhiêu gam?",a:["30 g","300 g","3 000 g","30 000 g"],c:2,e:"Vì 1 kg = 1 000 g nên 3 kg = 3 000 g."},
+ {q:"5 tạ bằng bao nhiêu ki-lô-gam?",a:["50 kg","500 kg","5 000 kg","15 kg"],c:1,e:"Vì 1 tạ = 100 kg nên 5 tạ = 500 kg."},
+ {q:"2 yến bằng bao nhiêu ki-lô-gam?",a:["2 kg","12 kg","20 kg","200 kg"],c:2,e:"Vì 1 yến = 10 kg nên 2 yến = 20 kg."},
+ {q:"4 000 g bằng bao nhiêu ki-lô-gam?",a:["40 kg","4 kg","400 kg","14 kg"],c:1,e:"Vì 1 000 g = 1 kg nên 4 000 g = 4 kg."},
+ {q:"2 tấn bằng bao nhiêu ki-lô-gam?",a:["200 kg","2 000 kg","20 000 kg","20 kg"],c:1,e:"Vì 1 tấn = 1 000 kg nên 2 tấn = 2 000 kg."},
+ {q:"6 kg bằng bao nhiêu gam?",a:["600 g","6 000 g","60 000 g","60 g"],c:1,e:"Vì 1 kg = 1 000 g nên 6 kg = 6 000 g."},
+ {q:"9 tạ bằng bao nhiêu ki-lô-gam?",a:["90 kg","900 kg","9 000 kg","19 kg"],c:1,e:"Vì 1 tạ = 100 kg nên 9 tạ = 900 kg."},
+ {q:"40 kg bằng bao nhiêu yến?",a:["4 yến","40 yến","400 yến","14 yến"],c:0,e:"Vì 1 yến = 10 kg nên 40 kg = 4 yến."},
+ {q:"1 tấn 2 tạ bằng bao nhiêu ki-lô-gam?",a:["120 kg","1 020 kg","1 200 kg","12 000 kg"],c:2,e:"1 tấn = 1 000 kg; 2 tạ = 200 kg. Tổng là 1 200 kg."},
+ {q:"2 500 g viết dưới dạng ki-lô-gam và gam là:",a:["25 kg","2 kg 50 g","2 kg 500 g","250 kg"],c:2,e:"2 500 g = 2 000 g + 500 g = 2 kg 500 g."}
+];
+let index=0,tries=0,correct=0,locked=false,studentName="";
+const $=id=>document.getElementById(id);
+function sound(ok){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;const c=new C(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=ok?880:220;g.gain.value=.07;o.start();o.stop(c.currentTime+(ok?.16:.24));}catch(e){}}
+function updateProgress(){ $("progress").style.width=(index/questions.length*100)+"%"; $("status").textContent=index===0&&tries===0?"Đang làm bài":`Đã làm ${index}/${questions.length}`;}
+function render(){
+ locked=false;tries=0;$("counter").textContent=`Câu ${index+1}/${questions.length}`;$("attempt").textContent="Lượt thử: 1/2";$("question").textContent=questions[index].q;$("feedback").className="feedback";$("feedback").textContent="";$("next").disabled=true;$("next").textContent=index===questions.length-1?"XEM KẾT QUẢ":"CÂU TIẾP THEO";
+ $("answers").innerHTML="";
+ questions[index].a.forEach((v,i)=>{const b=document.createElement("button");b.className="answer";b.textContent=String.fromCharCode(65+i)+". "+v;b.onclick=()=>choose(i,b);$("answers").appendChild(b)});
+ updateProgress();
+}
+function choose(i,btn){
+ if(locked)return;tries++;$("attempt").textContent=`Lượt thử: ${tries}/2`;
+ const q=questions[index],buttons=[...$("answers").children];
+ if(i===q.c){correct++;locked=true;btn.classList.add("correct");buttons.forEach(b=>b.disabled=true);$("feedback").className="feedback good";$("feedback").textContent="Chính xác! "+q.e;sound(true);$("next").disabled=false;}
+ else {btn.classList.add("wrong");btn.disabled=true;sound(false);if(tries>=2){locked=true;buttons.forEach(b=>b.disabled=true);buttons[q.c].classList.add("correct");$("feedback").className="feedback bad";$("feedback").textContent="Đáp án đúng là "+q.a[q.c]+". "+q.e;$("next").disabled=false;}else{$("feedback").className="feedback bad";$("feedback").textContent="Chưa chính xác. Em hãy thử lại một lần nữa nhé!";}}
+}
+$("start").onclick=()=>{studentName=$("student").value.trim();if(!studentName){alert("Em hãy nhập họ và tên trước khi bắt đầu nhé!");$("student").focus();return;}index=0;correct=0;$("intro").classList.add("hidden");$("quiz").classList.remove("hidden");render();};
+$("next").onclick=()=>{if(!locked)return;index++;if(index<questions.length)render();else finish();};
+function finish(){$("quiz").classList.add("hidden");$("result").classList.remove("hidden");$("studentResult").textContent="Học sinh: "+studentName;$("score").textContent=correct+"/10";let msg=correct>=9?"Xuất sắc! Em nắm vững cách đổi đơn vị khối lượng.":correct>=7?"Rất tốt! Em hãy tiếp tục phát huy nhé.":correct>=5?"Khá tốt! Em cần ôn lại bảng đơn vị khối lượng.":"Em hãy xem lại bảng đơn vị và luyện tập thêm nhé."; $("comment").textContent=msg;$("detail").textContent=`Số câu đúng: ${correct} · Số câu chưa đúng: ${10-correct}`;$("progress").style.width="100%";$("status").textContent="Hoàn thành";}
+$("again").onclick=()=>{$("result").classList.add("hidden");$("intro").classList.remove("hidden");$("student").value=studentName;$("progress").style.width="0%";$("status").textContent="Chưa bắt đầu";};
+</script>
+</body></html>
